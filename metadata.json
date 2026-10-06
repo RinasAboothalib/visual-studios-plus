@@ -1,0 +1,6 @@
+{
+  "name": "Visual Studios Plus — Digital Creative Agency",
+  "description": "Visual Studios Plus is Colombo's premier content creation, photography, videography, CGI, and digital marketing agency.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
