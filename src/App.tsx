@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
-import { AboutSection } from './components/AboutSection.tsx';
+import { ParallelShowcase } from './components/ParallelShowcase.tsx';
 import { WorkSection } from './components/WorkSection.tsx';
+import { AboutSection } from './components/AboutSection.tsx';
 import { ServicesSection } from './components/ServicesSection.tsx';
 import { ContactSection } from './components/ContactSection.tsx';
 import { Footer } from './components/Footer.tsx';
 import { VideoShowreelModal } from './components/VideoShowreelModal.tsx';
 import { ProjectInquiryModal } from './components/ProjectInquiryModal.tsx';
+import { CaseStudyModal } from './components/CaseStudyModal.tsx';
+import { Project } from './types/index.ts';
 import { Play } from 'lucide-react';
 
 export default function App() {
   const [isShowreelOpen, setIsShowreelOpen] = useState(false);
   const [isProjectInquiryOpen, setIsProjectInquiryOpen] = useState(false);
+  const [selectedCaseStudyProject, setSelectedCaseStudyProject] = useState<Project | null>(null);
   const [activeSection] = useState('work');
 
   return (
@@ -32,16 +36,22 @@ export default function App() {
           onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)}
         />
 
-        {/* 01: Work Section (Unifying Videography with real YouTube videos & Photography archive) */}
+        {/* 01: Apple-Style Parallel Movement Showcase ("We take a project for a business & deliver results") */}
+        <ParallelShowcase
+          onSelectProject={(project) => setSelectedCaseStudyProject(project)}
+          onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)}
+        />
+
+        {/* 02: Individual Projects Hub (The central centerpiece of the website) */}
         <WorkSection onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)} />
 
-        {/* 02: About Agency */}
+        {/* 03: About Agency */}
         <AboutSection />
 
-        {/* 03: What We Do (Services & Capabilities) */}
+        {/* 04: What We Do (Services & Capabilities) */}
         <ServicesSection onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)} />
 
-        {/* 04: Contact & Inquiries */}
+        {/* 05: Contact & Inquiries */}
         <ContactSection onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)} />
       </main>
 
@@ -76,6 +86,16 @@ export default function App() {
       <ProjectInquiryModal
         isOpen={isProjectInquiryOpen}
         onClose={() => setIsProjectInquiryOpen(false)}
+      />
+
+      {/* Root Case Study Modal (when triggered from parallel movement showcase) */}
+      <CaseStudyModal
+        project={selectedCaseStudyProject}
+        onClose={() => setSelectedCaseStudyProject(null)}
+        onOpenInquiry={() => {
+          setSelectedCaseStudyProject(null);
+          setIsProjectInquiryOpen(true);
+        }}
       />
     </div>
   );

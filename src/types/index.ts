@@ -15,6 +15,7 @@ export interface Project {
   id: string;
   title: string;
   client: string;
+  clientLogo?: string;
   category: Category;
   categoryLabel: string;
   year: string;
@@ -27,6 +28,13 @@ export interface Project {
   challenge?: string;
   solution?: string;
   results?: string[];
+  resultsHighlight?: string;
+  beforeAfter?: {
+    before: string;
+    after: string;
+    metricGrowth: string;
+  };
+  campaignChannels?: string[];
   stats?: ProjectStat[];
   deliverables: string[];
   galleryImages: string[];

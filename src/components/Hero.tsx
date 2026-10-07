@@ -1,11 +1,10 @@
 import React from 'react';
 import { Play, ArrowDown } from 'lucide-react';
 import { CLIENT_PARTNERS, STUDIO_INFO } from '../data/projectsData.ts';
-import { VSPlusLogo } from './VSPlusLogo.tsx';
 
 interface HeroProps {
   onOpenShowreel: () => void;
-  onOpenProjectInquiry: () => void;
+  onOpenProjectInquiry?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
@@ -31,22 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#dfff24]/5 blur-[180px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
-        {/* Top Kicker - completely clean without box backgrounds */}
-        <div className="flex flex-wrap items-center gap-4 mb-8">
-          <div className="flex items-center">
-            <VSPlusLogo size="sm" accentColor="#ffffff" />
-          </div>
-          <div className="flex items-center gap-2 text-xs font-bold text-zinc-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#dfff24]" />
-            <span>Colombo, Sri Lanka</span>
-          </div>
-          <span className="text-zinc-600">/</span>
-          <span className="text-xs uppercase tracking-widest font-bold text-zinc-400">
-            Photography · Videography · Strategy · CGI
-          </span>
-        </div>
-
-        {/* Massive Editorial Headline (underline removed from experienced) */}
+        {/* Massive Editorial Headline */}
         <div className="space-y-4 max-w-5xl">
           <p className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-400 tracking-tight">
             The Creative Agency
@@ -59,19 +43,26 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl font-normal pt-2 leading-relaxed">
-            Colombo’s premier content creation, videography, and digital marketing agency. 
-            Partnering with Sri Lanka’s favorite consumer brands to smash targets with fresh creative storytelling.
+            Colombo’s premier digital marketing, social media campaigns, and content creation agency. 
+            We take projects for ambitious businesses and deliver measurable results through viral social storytelling.
           </p>
         </div>
 
         {/* Action CTAs (Request a proposal removed as instructed) */}
         <div className="flex flex-wrap items-center gap-4 pt-8">
           <a
-            href="#work"
-            className="px-6 py-3.5 bg-white text-black font-bold text-sm rounded-full hover:bg-[#dfff24] transition-all duration-200 flex items-center gap-2 shadow-lg hover:scale-105"
+            href="#results"
+            className="px-6 py-3.5 bg-[#dfff24] text-black font-extrabold text-sm rounded-full hover:bg-white transition-all duration-200 flex items-center gap-2 shadow-lg hover:scale-105"
           >
-            <span>Explore Our Work</span>
+            <span>See Business Results</span>
             <ArrowDown className="w-4 h-4" />
+          </a>
+
+          <a
+            href="#work"
+            className="px-6 py-3.5 bg-zinc-900/90 border border-zinc-700/80 hover:border-white text-white font-bold text-sm rounded-full transition-all duration-200 flex items-center gap-2 shadow-sm hover:scale-105"
+          >
+            <span>Individual Projects</span>
           </a>
 
           <button

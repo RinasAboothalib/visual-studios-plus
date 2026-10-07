@@ -30,7 +30,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onOpenProjectI
           <div>
             <div className="flex items-center gap-3 mb-4">
               <span className="font-mono text-xs uppercase tracking-widest text-[#dfff24]">
-                ( 03 )
+                ( 04 )
               </span>
               <div className="h-px w-8 bg-zinc-800" />
               <span className="font-mono text-xs uppercase tracking-widest text-zinc-400">

@@ -36,7 +36,7 @@ export const AboutSection: React.FC = () => {
         {/* Editorial Section Number */}
         <div className="flex items-center gap-3 mb-10">
           <span className="font-mono text-xs uppercase tracking-widest text-[#dfff24]">
-            ( 01 )
+            ( 03 )
           </span>
           <div className="h-px w-8 bg-zinc-800" />
           <span className="font-mono text-xs uppercase tracking-widest text-zinc-400">

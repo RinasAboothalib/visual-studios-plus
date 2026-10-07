@@ -5,13 +5,12 @@ import { VSPlusLogo } from './VSPlusLogo.tsx';
 
 interface NavbarProps {
   onOpenProjectInquiry: () => void;
-  onOpenShowreel: () => void;
+  onOpenShowreel?: () => void;
   activeSection: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   onOpenProjectInquiry,
-  onOpenShowreel,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,7 +25,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { label: 'Home', href: '#home' },
-    { label: 'Work', href: '#work' },
+    { label: 'Results', href: '#results' },
+    { label: 'Projects', href: '#work' },
     { label: 'About', href: '#about' },
     { label: 'Services', href: '#services' },
     { label: 'Contact', href: '#contact' },
@@ -66,36 +66,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               ))}
             </nav>
 
-            {/* Action Buttons */}
-            <div className="hidden md:flex items-center gap-3">
-              <button
-                onClick={onOpenShowreel}
-                type="button"
-                className="text-xs font-semibold tracking-wide uppercase px-3.5 py-2 text-zinc-300 hover:text-white border border-zinc-800 hover:border-zinc-600 rounded-full transition-all flex items-center gap-1.5"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#dfff24] animate-pulse" />
-                Showreel
-              </button>
-
-              <button
-                onClick={onOpenProjectInquiry}
-                type="button"
-                className="text-xs font-bold tracking-wider uppercase px-4 py-2.5 bg-[#dfff24] text-black hover:bg-white rounded-full transition-all duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-[#dfff24]/20"
-              >
-                <span>Start a Project</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Mobile Hamburger */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <button
-                onClick={onOpenProjectInquiry}
-                type="button"
-                className="text-xs font-bold px-3 py-1.5 bg-[#dfff24] text-black rounded-full"
-              >
-                Inquire
-              </button>
+            {/* Mobile Hamburger (Inquire button removed) */}
+            <div className="flex items-center lg:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 type="button"
@@ -137,16 +109,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="pt-8 border-t border-zinc-800/80 flex flex-col gap-3">
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onOpenShowreel();
-              }}
-              type="button"
-              className="w-full py-3 text-center text-sm font-semibold text-white border border-zinc-700 rounded-full"
-            >
-              Play Agency Showreel
-            </button>
             <button
               onClick={() => {
                 setIsMobileMenuOpen(false);
