@@ -1,25 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Play, 
-  Maximize2, 
-  ExternalLink, 
-  Film, 
-  Camera, 
-  Search, 
-  ArrowUpRight, 
-  ChevronLeft, 
-  ChevronRight, 
-  X,
-  TrendingUp,
-  BarChart3,
-  Layers,
-  Sparkles,
-  SlidersHorizontal,
-  CheckCircle2,
-  Tv,
-  Palette,
-  FileSpreadsheet
-} from 'lucide-react';
 import { PROJECTS, PHOTOGRAPHY_ITEMS } from '../data/projectsData.ts';
 import { YOUTUBE_VIDEOS, YouTubeVideo } from '../data/videographyData.ts';
 import { Project, PhotoItem } from '../types/index.ts';
@@ -55,13 +34,11 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
   // Filtered projects
   const filteredProjects = useMemo(() => {
     return PROJECTS.filter((p) => {
-      // Category match
       let matchesCategory = true;
       if (activeFilter !== 'all' && activeFilter !== 'agency-films' && activeFilter !== 'photography') {
         matchesCategory = p.category === activeFilter;
       }
 
-      // Search match
       const q = searchQuery.toLowerCase().trim();
       if (!q) return matchesCategory;
 
@@ -70,7 +47,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
         p.client.toLowerCase().includes(q) ||
         p.headline.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
-        p.tags.some(t => t.toLowerCase().includes(q));
+        p.tags.some((t) => t.toLowerCase().includes(q));
 
       return matchesCategory && matchesSearch;
     });
@@ -104,12 +81,12 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
     });
   }, [activePhotoCategory, searchQuery]);
 
-  const filterTabs: { key: MainCategoryFilter; label: string; count?: number; icon?: React.ReactNode }[] = [
+  const filterTabs: { key: MainCategoryFilter; label: string; count?: number }[] = [
     { key: 'all', label: 'All Projects', count: PROJECTS.length },
-    { key: 'case-studies', label: 'Social & Viral Campaigns', count: PROJECTS.filter(p => p.category === 'case-studies').length },
-    { key: 'retainers', label: 'Digital Retainers', count: PROJECTS.filter(p => p.category === 'retainers').length },
-    { key: 'branding', label: 'Brand & CGI', count: PROJECTS.filter(p => p.category === 'branding').length },
-    { key: 'tvc', label: 'TVC & Films', count: PROJECTS.filter(p => p.category === 'tvc').length },
+    { key: 'case-studies', label: 'Social & Viral Campaigns', count: PROJECTS.filter((p) => p.category === 'case-studies').length },
+    { key: 'retainers', label: 'Digital Retainers', count: PROJECTS.filter((p) => p.category === 'retainers').length },
+    { key: 'branding', label: 'Brand & CGI', count: PROJECTS.filter((p) => p.category === 'branding').length },
+    { key: 'tvc', label: 'TVC & Films', count: PROJECTS.filter((p) => p.category === 'tvc').length },
     { key: 'photography', label: 'Commercial Photography', count: PHOTOGRAPHY_ITEMS.length },
     { key: 'agency-films', label: 'YouTube Video Vault', count: YOUTUBE_VIDEOS.length },
   ];
@@ -125,19 +102,19 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
   const activePhoto = photoLightboxIndex !== null ? filteredPhotos[photoLightboxIndex] : null;
 
   return (
-    <section id="work" className="py-24 border-b border-white/10 relative bg-[#0c0e0c]">
+    <section id="work" className="py-24 border-b border-white/10 relative glass-panel">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* ================= SECTION HEADER ================= */}
+        {/* Section Header (Zero Icons) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-zinc-900 border border-white/10 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#dfff24] animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-widest text-[#dfff24] font-bold">
-                ( Flagship Portfolio )
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full glass-card border border-white/10 mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#dfff24]" />
+              <span className="font-sans text-xs uppercase tracking-widest text-[#dfff24] font-bold">
+                ( 03 ) Flagship Portfolio
               </span>
-              <span className="text-zinc-600 font-mono">|</span>
-              <span className="font-mono text-xs text-zinc-300">
+              <span className="text-zinc-600 font-sans">|</span>
+              <span className="font-sans text-xs text-zinc-300">
                 Individual Client Projects
               </span>
             </div>
@@ -147,7 +124,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
               <span className="text-[#dfff24]">verifiable business impact</span>.
             </h2>
 
-            <p className="text-base sm:text-lg text-zinc-400 max-w-2xl mt-4 font-normal">
+            <p className="text-base sm:text-lg text-zinc-300 max-w-2xl mt-4 font-normal">
               Every client brief is treated as a growth partnership. We blend high-fashion visual standards 
               with aggressive social media reach, high-velocity turnaround, and conversion-driven storytelling.
             </p>
@@ -155,29 +132,28 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
 
           {/* Quick controls: Search & View Density */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto">
-            {/* Search Input */}
+            {/* Search Input without icons */}
             <div className="relative min-w-[260px]">
-              <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500" />
               <input
                 type="text"
                 placeholder="Search brands, reels, TVC..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-full pl-10 pr-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#dfff24] transition-colors"
+                className="w-full glass-card border border-zinc-700 rounded-full px-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-[#dfff24] transition-colors"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-xs font-sans"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  CLEAR
                 </button>
               )}
             </div>
 
-            {/* View Density Switcher (Only in projects mode) */}
+            {/* View Density Switcher */}
             {activeFilter !== 'photography' && activeFilter !== 'agency-films' && (
-              <div className="flex items-center gap-1 p-1 bg-zinc-950 border border-zinc-800 rounded-full self-start sm:self-auto">
+              <div className="flex items-center gap-1 p-1 glass-card border border-zinc-800 rounded-full self-start sm:self-auto">
                 <button
                   onClick={() => setViewDensity('standard')}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
@@ -185,7 +161,6 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                       ? 'bg-zinc-800 text-white'
                       : 'text-zinc-400 hover:text-white'
                   }`}
-                  title="Standard Visual Grid"
                 >
                   Visual Grid
                 </button>
@@ -196,7 +171,6 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                       ? 'bg-[#dfff24] text-black shadow-sm'
                       : 'text-zinc-400 hover:text-white'
                   }`}
-                  title="Highlight Verified Results & Metrics"
                 >
                   Results First
                 </button>
@@ -205,7 +179,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
           </div>
         </div>
 
-        {/* ================= CATEGORY FILTER TABS ================= */}
+        {/* Category Filter Tabs */}
         <div className="relative mb-12 overflow-x-auto pb-2 scrollbar-none border-b border-white/10">
           <div className="flex items-center gap-2 min-w-max pb-3">
             {filterTabs.map((tab) => {
@@ -216,13 +190,13 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                   onClick={() => setActiveFilter(tab.key)}
                   className={`px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'bg-[#dfff24] text-black shadow-[0_0_20px_rgba(223,255,36,0.2)]'
-                      : 'bg-zinc-900/80 text-zinc-400 hover:text-white hover:bg-zinc-800 border border-white/5'
+                      ? 'bg-[#dfff24] text-black shadow-md'
+                      : 'glass-card text-zinc-400 hover:text-white border border-white/5'
                   }`}
                 >
                   <span>{tab.label}</span>
                   {tab.count !== undefined && (
-                    <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-full ${
+                    <span className={`text-[10px] font-sans px-1.5 py-0.5 rounded-full ${
                       isActive ? 'bg-black/20 text-black font-extrabold' : 'bg-zinc-800 text-zinc-400'
                     }`}>
                       {tab.count}
@@ -234,21 +208,20 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
           </div>
         </div>
 
-        {/* ================= TAB 1: INDIVIDUAL PROJECTS SHOWCASE (Primary Core Focus) ================= */}
+        {/* TAB 1: INDIVIDUAL PROJECTS SHOWCASE (Primary Core Focus) */}
         {activeFilter !== 'photography' && activeFilter !== 'agency-films' && (
           <div>
             {filteredProjects.length === 0 ? (
-              <div className="py-20 text-center rounded-3xl bg-zinc-950/60 border border-white/5">
-                <Search className="w-10 h-10 text-zinc-600 mx-auto mb-4" />
+              <div className="py-20 text-center rounded-3xl glass-card border border-white/5">
                 <h3 className="text-lg font-bold text-white">No projects found</h3>
-                <p className="text-sm text-zinc-500 mt-1 max-w-sm mx-auto">
+                <p className="text-sm text-zinc-400 mt-1 max-w-sm mx-auto">
                   Try adjusting your search terms or filter category to find what you are looking for.
                 </p>
                 <button
                   onClick={() => { setSearchQuery(''); setActiveFilter('all'); }}
-                  className="mt-4 px-4 py-2 rounded-full bg-zinc-800 text-xs font-bold text-white hover:bg-zinc-700"
+                  className="mt-4 px-4 py-2 rounded-full glass-panel text-xs font-bold text-white hover:border-[#dfff24]"
                 >
-                  Reset All Filters
+                  Reset Filters
                 </button>
               </div>
             ) : (
@@ -260,7 +233,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                     <article
                       key={project.id}
                       onClick={() => setSelectedProject(project)}
-                      className="group relative flex flex-col justify-between rounded-3xl bg-zinc-950/80 border border-white/10 hover:border-[#dfff24]/60 transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
+                      className="group relative flex flex-col justify-between rounded-3xl glass-card border border-white/10 hover:border-[#dfff24] transition-all duration-300 overflow-hidden cursor-pointer hover:-translate-y-1.5 hover:shadow-2xl"
                     >
                       {/* Top Thumbnail Image */}
                       <div className="relative aspect-[16/10] overflow-hidden bg-zinc-900">
@@ -270,24 +243,24 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                           loading="lazy"
                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
                         
                         {/* Category & Year Badges */}
                         <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                          <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-mono text-[#dfff24] font-bold">
+                          <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-sans text-[#dfff24] font-bold">
                             {project.categoryLabel}
                           </span>
-                          <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-mono text-zinc-300">
+                          <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-sans text-zinc-300">
                             {project.year}
                           </span>
                         </div>
 
                         {/* Results Highlight Pill (Floating on Image) */}
                         {topStat && (
-                          <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2 p-2 rounded-xl bg-black/85 backdrop-blur-md border border-[#dfff24]/30 shadow-lg">
-                            <span className="w-2 h-2 rounded-full bg-[#dfff24] shrink-0 animate-pulse" />
+                          <div className="absolute bottom-3 left-3 right-3 flex items-center gap-2 p-2 rounded-xl bg-black/90 backdrop-blur-md border border-[#dfff24]/40 shadow-lg">
+                            <span className="w-2 h-2 rounded-full bg-[#dfff24] shrink-0" />
                             <div className="flex items-baseline gap-1.5 min-w-0">
-                              <span className="text-sm font-black text-white font-mono shrink-0">
+                              <span className="text-sm font-black text-white font-sans shrink-0">
                                 {topStat.value}
                               </span>
                               <span className="text-[11px] text-zinc-300 truncate">
@@ -302,10 +275,12 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                       <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-bold">
+                            <span className="text-xs font-sans uppercase tracking-wider text-zinc-400 font-bold">
                               {project.client}
                             </span>
-                            <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-[#dfff24] transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            <span className="text-xs text-zinc-500 group-hover:text-[#dfff24] font-sans transition-colors">
+                              ↗
+                            </span>
                           </div>
 
                           <h3 className="text-xl font-bold text-white tracking-tight leading-snug group-hover:text-[#dfff24] transition-colors">
@@ -329,7 +304,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                               </span>
                             ))}
                             {project.tags.length > 3 && (
-                              <span className="px-2 py-0.5 rounded-full bg-white/5 text-[10px] font-mono text-zinc-500">
+                              <span className="px-2 py-0.5 rounded-full bg-white/5 text-[10px] font-sans text-zinc-500">
                                 +{project.tags.length - 3}
                               </span>
                             )}
@@ -340,8 +315,8 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                             <span className="text-xs font-bold text-zinc-300 group-hover:text-white transition-colors">
                               Explore Case Study &amp; Results
                             </span>
-                            <span className="w-6 h-6 rounded-full bg-zinc-900 group-hover:bg-[#dfff24] group-hover:text-black text-zinc-400 flex items-center justify-center transition-colors">
-                              <ArrowUpRight className="w-3.5 h-3.5" />
+                            <span className="text-xs font-sans text-[#dfff24]">
+                              →
                             </span>
                           </div>
                         </div>
@@ -354,10 +329,9 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
           </div>
         )}
 
-        {/* ================= TAB 2: COMMERCIAL PHOTOGRAPHY ARCHIVE ================= */}
+        {/* TAB 2: COMMERCIAL PHOTOGRAPHY ARCHIVE */}
         {activeFilter === 'photography' && (
           <div className="space-y-8 animate-in fade-in duration-300">
-            {/* Subcategories */}
             <div className="flex flex-wrap items-center gap-2">
               {photoCategories.map((cat) => (
                 <button
@@ -366,7 +340,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                   className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
                     activePhotoCategory === cat.key
                       ? 'bg-white text-black shadow-md'
-                      : 'bg-zinc-900 text-zinc-400 hover:text-white'
+                      : 'glass-card text-zinc-400 hover:text-white'
                   }`}
                 >
                   {cat.label}
@@ -374,13 +348,12 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
               ))}
             </div>
 
-            {/* Masonry / Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPhotos.map((photo, idx) => (
                 <div
                   key={photo.id}
                   onClick={() => setPhotoLightboxIndex(idx)}
-                  className="group relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 cursor-pointer aspect-square sm:aspect-[4/3] hover:border-[#dfff24]/60 transition-all hover:scale-[1.01]"
+                  className="group relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 cursor-pointer aspect-square sm:aspect-[4/3] hover:border-[#dfff24] transition-all hover:scale-[1.01]"
                 >
                   <img
                     src={photo.imageUrl}
@@ -388,8 +361,8 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                    <span className="text-[11px] font-mono text-[#dfff24] uppercase font-bold">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                    <span className="text-[11px] font-sans text-[#dfff24] uppercase font-bold">
                       {photo.categoryLabel}
                     </span>
                     <h4 className="text-base font-bold text-white mt-0.5">
@@ -405,7 +378,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
           </div>
         )}
 
-        {/* ================= TAB 3: YOUTUBE VIDEO VAULT ================= */}
+        {/* TAB 3: YOUTUBE VIDEO VAULT */}
         {activeFilter === 'agency-films' && (
           <div className="space-y-8 animate-in fade-in duration-300">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -413,7 +386,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                 <article
                   key={video.id}
                   onClick={() => setSelectedVideo(video)}
-                  className="group relative rounded-2xl overflow-hidden bg-zinc-950 border border-white/10 hover:border-[#dfff24]/60 transition-all cursor-pointer hover:-translate-y-1 shadow-lg"
+                  className="group relative rounded-2xl overflow-hidden glass-card border border-white/10 hover:border-[#dfff24] transition-all cursor-pointer hover:-translate-y-1 shadow-lg"
                 >
                   <div className="relative aspect-video overflow-hidden bg-black">
                     <img
@@ -423,22 +396,15 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                     />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
 
-                    {/* Play Button */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-[#dfff24] text-black flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                        <Play className="w-5 h-5 fill-black ml-0.5" />
+                      <div className="px-4 py-2 rounded-full bg-[#dfff24] text-black font-extrabold text-xs uppercase tracking-wider group-hover:scale-110 transition-transform shadow-2xl">
+                        PLAY FILM
                       </div>
                     </div>
-
-                    {video.duration && (
-                      <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/80 text-[10px] font-mono font-bold text-white">
-                        {video.duration}
-                      </span>
-                    )}
                   </div>
 
                   <div className="p-5 space-y-2">
-                    <span className="text-[11px] font-mono text-[#dfff24] uppercase font-bold">
+                    <span className="text-[11px] font-sans text-[#dfff24] uppercase font-bold">
                       {video.client}
                     </span>
                     <h4 className="text-base font-bold text-white group-hover:text-[#dfff24] transition-colors leading-snug">
@@ -454,7 +420,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
           </div>
         )}
 
-        {/* ================= BOTTOM CTA BANNER ================= */}
+        {/* Bottom CTA Banner (Zero Icons) */}
         <div className="mt-16 text-center">
           <p className="text-sm text-zinc-400 mb-4">
             Looking for custom creative direction, an integrated campaign, or an ongoing social retainer?
@@ -463,36 +429,36 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
             onClick={onOpenProjectInquiry}
             className="px-8 py-3.5 rounded-full bg-white text-black font-extrabold text-sm hover:bg-[#dfff24] hover:scale-105 transition-all shadow-xl cursor-pointer"
           >
-            Start a Project with Visual Studios+
+            Start a Project with Visual Studios+ →
           </button>
         </div>
 
       </div>
 
-      {/* ================= CASE STUDY DETAIL MODAL ================= */}
+      {/* Case Study Detail Modal (Zero Icons) */}
       <CaseStudyModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
         onOpenInquiry={onOpenProjectInquiry}
       />
 
-      {/* ================= YOUTUBE MODAL ================= */}
+      {/* YouTube Modal (Zero Icons) */}
       <YouTubeModal
         video={selectedVideo}
         onClose={() => setSelectedVideo(null)}
       />
 
-      {/* ================= PHOTOGRAPHY LIGHTBOX ================= */}
+      {/* Photography Lightbox (Zero Icons) */}
       {activePhoto && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4"
           onClick={() => setPhotoLightboxIndex(null)}
         >
           <button
             onClick={() => setPhotoLightboxIndex(null)}
-            className="absolute top-6 right-6 p-2 rounded-full bg-zinc-900 border border-white/20 text-white hover:rotate-90 transition-all z-20 cursor-pointer"
+            className="absolute top-6 right-6 px-4 py-2 rounded-full glass-panel border border-white/20 text-white text-xs font-sans uppercase font-bold cursor-pointer hover:border-white"
           >
-            <X className="w-5 h-5" />
+            CLOSE [ESC]
           </button>
 
           <div
@@ -505,7 +471,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
               className="max-h-[80vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
             />
             <div className="mt-4 text-center">
-              <p className="text-xs font-mono text-[#dfff24] uppercase font-bold">
+              <p className="text-xs font-sans text-[#dfff24] uppercase font-bold">
                 {activePhoto.client} · {activePhoto.categoryLabel}
               </p>
               <h4 className="text-lg font-bold text-white mt-0.5">
@@ -513,9 +479,8 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
               </h4>
             </div>
 
-            {/* Lightbox nav */}
             {filteredPhotos.length > 1 && (
-              <>
+              <div className="mt-4 flex items-center gap-4">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -523,9 +488,9 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                       setPhotoLightboxIndex((photoLightboxIndex - 1 + filteredPhotos.length) % filteredPhotos.length);
                     }
                   }}
-                  className="absolute left-[-50px] top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-900 border border-white/20 text-white hover:scale-110 hidden sm:block"
+                  className="px-4 py-2 rounded-full glass-panel text-xs font-sans text-white hover:border-[#dfff24]"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  ← PREV
                 </button>
                 <button
                   onClick={(e) => {
@@ -534,11 +499,11 @@ export const WorkSection: React.FC<WorkSectionProps> = ({ onOpenProjectInquiry }
                       setPhotoLightboxIndex((photoLightboxIndex + 1) % filteredPhotos.length);
                     }
                   }}
-                  className="absolute right-[-50px] top-1/2 -translate-y-1/2 p-2 rounded-full bg-zinc-900 border border-white/20 text-white hover:scale-110 hidden sm:block"
+                  className="px-4 py-2 rounded-full glass-panel text-xs font-sans text-white hover:border-[#dfff24]"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  NEXT →
                 </button>
-              </>
+              </div>
             )}
           </div>
         </div>

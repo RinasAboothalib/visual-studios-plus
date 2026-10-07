@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { X, ExternalLink, Film, Building2, Calendar } from 'lucide-react';
 import { YouTubeVideo } from '../data/videographyData.ts';
 
 interface YouTubeModalProps {
@@ -27,21 +26,21 @@ export const YouTubeModal: React.FC<YouTubeModalProps> = ({ video, onClose }) =>
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-zinc-950 border border-white/10 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative my-auto"
+        className="glass-panel border border-white/10 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative my-auto"
       >
-        {/* Top Control Bar */}
-        <div className="bg-zinc-900/90 px-6 py-4 border-b border-zinc-800 flex items-center justify-between">
+        {/* Top Control Bar (Zero Icons) */}
+        <div className="glass-header px-6 py-4 flex items-center justify-between border-b border-white/10">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-xs font-bold uppercase tracking-wider text-white">
+            <span className="text-xs font-sans uppercase tracking-wider text-white font-bold">
               {video.category}
             </span>
-            <span className="text-zinc-600">/</span>
-            <span className="text-xs font-bold text-[#dfff24]">
+            <span className="text-zinc-600 font-sans">/</span>
+            <span className="text-xs font-sans font-bold text-[#dfff24]">
               {video.client}
             </span>
           </div>
@@ -51,25 +50,24 @@ export const YouTubeModal: React.FC<YouTubeModalProps> = ({ video, onClose }) =>
               href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white border border-zinc-700 transition-colors"
-              title="Watch on YouTube"
+              className="px-3 py-1.5 rounded-full glass-card border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white transition-colors text-xs font-sans"
             >
-              <ExternalLink className="w-4 h-4" />
+              YOUTUBE ↗
             </a>
             <button
               onClick={onClose}
               type="button"
-              className="p-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white border border-zinc-700 transition-colors"
+              className="px-3 py-1.5 rounded-full glass-card border border-zinc-700 hover:border-white text-zinc-300 hover:text-white transition-colors text-xs font-sans font-bold cursor-pointer"
             >
-              <X className="w-5 h-5" />
+              CLOSE [ESC]
             </button>
           </div>
         </div>
 
-        {/* Responsive YouTube Embed Container */}
-        <div className="relative aspect-video w-full bg-black">
+        {/* Video Player Embed */}
+        <div className="relative aspect-video bg-black w-full">
           <iframe
-            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
             title={video.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -77,42 +75,33 @@ export const YouTubeModal: React.FC<YouTubeModalProps> = ({ video, onClose }) =>
           />
         </div>
 
-        {/* Video Narrative & Metadata */}
-        <div className="p-6 sm:p-8 space-y-4 bg-zinc-950">
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div className="space-y-1">
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                {video.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-400 font-medium">
-                {video.description}
-              </p>
-            </div>
-
-            <a
-              href="https://www.youtube.com/@visualstudiosplus"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 px-4 py-2 rounded-full bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-2 transition-colors self-start"
-            >
-              <span>Visit YouTube Channel</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+        {/* Video Metadata & Agency Narrative */}
+        <div className="p-6 sm:p-8 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-white/10 pb-4">
+            <h3 className="text-xl sm:text-2xl font-black text-white">
+              {video.title}
+            </h3>
+            <span className="text-xs font-sans text-zinc-400">
+              {video.year}
+            </span>
           </div>
 
-          <div className="pt-4 border-t border-zinc-800/80 flex flex-wrap items-center gap-6 text-xs text-zinc-400 font-bold">
-            <span className="flex items-center gap-1.5">
-              <Building2 className="w-3.5 h-3.5 text-[#dfff24]" />
-              Client: {video.client}
+          <p className="text-sm text-zinc-300 leading-relaxed font-normal">
+            {video.description}
+          </p>
+
+          <div className="pt-2 flex items-center justify-between">
+            <span className="text-xs font-sans text-[#dfff24]">
+              Visual Studios Plus Cinema Archive
             </span>
-            <span className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#dfff24]" />
-              Production: {video.year}
-            </span>
-            <span className="flex items-center gap-1.5">
-              <Film className="w-3.5 h-3.5 text-[#dfff24]" />
-              In-House Crew: Colombo 04
-            </span>
+            <a
+              href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-sans text-white hover:text-[#dfff24] transition-colors"
+            >
+              Watch Full Video on YouTube →
+            </a>
           </div>
         </div>
       </div>

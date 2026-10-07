@@ -1,81 +1,66 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
-import { ParallelShowcase } from './components/ParallelShowcase.tsx';
+import { BrandStatementSequence } from './components/BrandStatementSequence.tsx';
+import { ReelWallSection } from './components/ReelWallSection.tsx';
 import { WorkSection } from './components/WorkSection.tsx';
-import { AboutSection } from './components/AboutSection.tsx';
 import { ServicesSection } from './components/ServicesSection.tsx';
+import { ResultsSection } from './components/ResultsSection.tsx';
+import { AboutSection } from './components/AboutSection.tsx';
 import { ContactSection } from './components/ContactSection.tsx';
 import { Footer } from './components/Footer.tsx';
 import { VideoShowreelModal } from './components/VideoShowreelModal.tsx';
 import { ProjectInquiryModal } from './components/ProjectInquiryModal.tsx';
 import { CaseStudyModal } from './components/CaseStudyModal.tsx';
 import { Project } from './types/index.ts';
-import { Play } from 'lucide-react';
 
 export default function App() {
   const [isShowreelOpen, setIsShowreelOpen] = useState(false);
   const [isProjectInquiryOpen, setIsProjectInquiryOpen] = useState(false);
   const [selectedCaseStudyProject, setSelectedCaseStudyProject] = useState<Project | null>(null);
-  const [activeSection] = useState('work');
 
   return (
-    <div className="min-h-screen bg-[#0c0e0c] text-zinc-100 flex flex-col selection:bg-[#dfff24] selection:text-black">
-      {/* Navigation */}
+    <div className="min-h-screen bg-[#0c0e0c] text-zinc-100 flex flex-col selection:bg-[#dfff24] selection:text-black font-sans">
+      
+      {/* 01: Minimal Sticky Navigation with Active Section Indicator */}
       <Navbar
         onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)}
         onOpenShowreel={() => setIsShowreelOpen(true)}
-        activeSection={activeSection}
       />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections with Continuous Cinematic Flow — Zero Duplication */}
       <main className="flex-1">
-        {/* Hero Section */}
+        
+        {/* HERO: Cinematic Opening with Visible Video & Line-by-Line Reveal */}
         <Hero
           onOpenShowreel={() => setIsShowreelOpen(true)}
           onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)}
         />
 
-        {/* 01: Apple-Style Parallel Movement Showcase ("We take a project for a business & deliver results") */}
-        <ParallelShowcase
-          onSelectProject={(project) => setSelectedCaseStudyProject(project)}
-          onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)}
-        />
+        {/* BRAND STATEMENT SCROLL SEQUENCE: WE CREATE. WE STRATEGIZE. WE EXECUTE. WE AMPLIFY. WE MEASURE. WE GROW. */}
+        <BrandStatementSequence />
 
-        {/* 02: Individual Projects Hub (The central centerpiece of the website) */}
+        {/* INDIVIDUAL PROJECTS HUB: The Main Focus — High-Impact Individual Client Cases, Filters, & Search */}
         <WorkSection onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)} />
 
-        {/* 03: About Agency */}
-        <AboutSection />
+        {/* SOCIAL MEDIA REEL WALL: Dual-Row Vertical 9:16 Moving Wall */}
+        <ReelWallSection />
 
-        {/* 04: What We Do (Services & Capabilities) */}
+        {/* SERVICES: Editorial Service Architecture with Inquire Capabilities in One Line */}
         <ServicesSection onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)} />
 
-        {/* 05: Contact & Inquiries */}
+        {/* RESULTS ENGINE: Verified Commercial ROI with Prominent Brand Logos Background */}
+        <ResultsSection />
+
+        {/* ABOUT AGENCY: Studio Profile, Mission, & Heritage */}
+        <AboutSection />
+
+        {/* STUDIO CONTACTS & DIRECT INQUIRY: Unified High-Impact Contact Area with Social Icons */}
         <ContactSection onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)} />
       </main>
 
-      {/* Footer */}
+      {/* FOOTER: Minimal Glass Footer with Social Icons & Reduced Bottom Gap */}
       <Footer />
-
-      {/* Floating Bottom Quick Reel Trigger */}
-      <aside aria-label="Showreel Trigger" className="fixed bottom-6 right-6 z-30 hidden sm:block">
-        <button
-          onClick={() => setIsShowreelOpen(true)}
-          type="button"
-          className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-zinc-900/90 backdrop-blur-md border border-white/10 hover:border-[#dfff24] text-white shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer"
-        >
-          <div className="w-5 h-5 rounded-full bg-[#dfff24] text-black flex items-center justify-center group-hover:rotate-12 transition-transform">
-            <Play className="w-2.5 h-2.5 fill-black ml-0.5" />
-          </div>
-          <span className="text-xs font-bold text-zinc-200">
-            Showreel
-          </span>
-          <span className="text-[10px] font-mono font-bold text-[#dfff24]">
-            01:30
-          </span>
-        </button>
-      </aside>
 
       {/* Interactive Modals */}
       <VideoShowreelModal
@@ -88,7 +73,6 @@ export default function App() {
         onClose={() => setIsProjectInquiryOpen(false)}
       />
 
-      {/* Root Case Study Modal (when triggered from parallel movement showcase) */}
       <CaseStudyModal
         project={selectedCaseStudyProject}
         onClose={() => setSelectedCaseStudyProject(null)}

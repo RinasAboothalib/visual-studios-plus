@@ -1,22 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { 
-  X, 
-  ArrowUpRight, 
-  CheckCircle2, 
-  Sparkles, 
-  Building2, 
-  Calendar, 
-  Tag, 
-  TrendingUp, 
-  Target, 
-  BarChart3, 
-  Layers, 
-  Maximize2,
-  ChevronLeft,
-  ChevronRight,
-  Share2,
-  Check
-} from 'lucide-react';
 import { Project } from '../types/index.ts';
 
 interface CaseStudyModalProps {
@@ -66,7 +48,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 overflow-y-auto bg-black/90 backdrop-blur-xl animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 overflow-y-auto bg-black/90 backdrop-blur-2xl animate-in fade-in duration-200">
       
       {/* Click outside backdrop */}
       <div 
@@ -75,42 +57,41 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
         aria-hidden="true" 
       />
 
-      {/* Modal Dialog Card */}
+      {/* Modal Dialog Card with Glass Effect */}
       <div 
-        className="relative z-10 w-full max-w-5xl bg-[#0c0e0c] border border-white/10 sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] sm:max-h-[92vh] my-auto"
+        className="relative z-10 w-full max-w-5xl glass-panel sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[96vh] sm:max-h-[92vh] my-auto border border-white/10"
         onClick={(e) => e.stopPropagation()}
       >
         
-        {/* Sticky Header Bar */}
-        <div className="sticky top-0 z-30 flex items-center justify-between px-6 py-4 bg-[#0c0e0c]/95 backdrop-blur-md border-b border-white/10">
+        {/* Sticky Header Bar (Zero Icons) */}
+        <div className="sticky top-0 z-30 flex items-center justify-between px-6 py-4 glass-header border-b border-white/10">
           <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#dfff24] animate-pulse" />
-            <span className="font-mono text-xs uppercase tracking-widest text-[#dfff24] font-bold">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#dfff24]" />
+            <span className="font-sans text-xs uppercase tracking-widest text-[#dfff24] font-bold">
               {project.categoryLabel}
             </span>
-            <span className="text-zinc-600 font-mono">|</span>
-            <span className="font-mono text-xs text-zinc-400">
+            <span className="text-zinc-600 font-sans">|</span>
+            <span className="font-sans text-xs text-zinc-300">
               {project.client} · {project.year}
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleCopyLink}
               type="button"
-              className="p-2 rounded-full bg-zinc-900 border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white transition-colors cursor-pointer"
-              title="Copy Case Study Link"
+              className="px-3 py-1.5 rounded-full glass-card border border-zinc-700 hover:border-zinc-500 text-zinc-300 hover:text-white transition-colors cursor-pointer text-xs font-sans"
             >
-              {copied ? <Check className="w-4 h-4 text-[#dfff24]" /> : <Share2 className="w-4 h-4" />}
+              {copied ? 'LINK COPIED' : 'SHARE'}
             </button>
 
             <button
               onClick={onClose}
               type="button"
               aria-label="Close modal"
-              className="p-2 rounded-full bg-zinc-900 border border-zinc-700 hover:border-white text-zinc-300 hover:text-white transition-all cursor-pointer hover:rotate-90"
+              className="px-3 py-1.5 rounded-full glass-card border border-zinc-700 hover:border-white text-zinc-300 hover:text-white transition-all cursor-pointer text-xs font-sans font-bold"
             >
-              <X className="w-5 h-5" />
+              CLOSE [ESC]
             </button>
           </div>
         </div>
@@ -124,7 +105,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-full bg-zinc-900 border border-white/10 text-xs font-mono font-medium text-zinc-300"
+                  className="px-3 py-1 rounded-full glass-card border border-white/10 text-xs font-sans text-zinc-300"
                 >
                   {tag}
                 </span>
@@ -144,7 +125,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             </p>
           </div>
 
-          {/* Hero Media Showcase with Gallery Slider */}
+          {/* Hero Media Showcase with Gallery Slider (Zero Icons) */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden bg-zinc-950 border border-white/10 aspect-video group">
             <img
               src={allImages[activeImageIndex] || project.thumbnail}
@@ -159,21 +140,19 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               <>
                 <button
                   onClick={() => setActiveImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length)}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 transition-all opacity-80 hover:opacity-100 hover:scale-110 cursor-pointer"
-                  aria-label="Previous frame"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-xs font-sans border border-white/20 transition-all cursor-pointer"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  ← PREV
                 </button>
                 <button
                   onClick={() => setActiveImageIndex((prev) => (prev + 1) % allImages.length)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/70 hover:bg-black text-white border border-white/20 transition-all opacity-80 hover:opacity-100 hover:scale-110 cursor-pointer"
-                  aria-label="Next frame"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-xs font-sans border border-white/20 transition-all cursor-pointer"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  NEXT →
                 </button>
 
-                {/* Thumbnails strip */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 p-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10">
+                {/* Thumbnails indicator */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 p-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10">
                   {allImages.map((_, idx) => (
                     <button
                       key={idx}
@@ -188,58 +167,41 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             )}
           </div>
 
-          {/* ================= SECTION: THE BUSINESS PROBLEM VS OUR SOLUTION ================= */}
+          {/* SECTION: THE BUSINESS PROBLEM VS OUR SOLUTION */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* The Challenge */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-zinc-950 border border-white/10 space-y-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-                  <Target className="w-4 h-4 text-red-400" />
-                </div>
-                <h3 className="font-mono text-xs uppercase tracking-widest text-red-400 font-bold">
-                  The Business Challenge
-                </h3>
-              </div>
-
-              <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">
+            <div className="p-6 sm:p-8 rounded-3xl glass-card border border-white/10 space-y-4">
+              <span className="font-sans text-xs uppercase tracking-widest text-red-400 font-bold block">
+                [Phase 01] The Business Challenge
+              </span>
+              <p className="text-zinc-300 text-sm sm:text-base leading-relaxed font-normal">
                 {project.challenge || project.overview}
               </p>
             </div>
 
             {/* Our Strategy & Solution */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-zinc-950 border border-[#dfff24]/30 space-y-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-[#dfff24]/10 border border-[#dfff24]/30 flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-[#dfff24]" />
-                </div>
-                <h3 className="font-mono text-xs uppercase tracking-widest text-[#dfff24] font-bold">
-                  The Strategy &amp; Execution
-                </h3>
-              </div>
-
-              <p className="text-zinc-300 text-sm sm:text-base leading-relaxed">
+            <div className="p-6 sm:p-8 rounded-3xl glass-card border border-[#dfff24]/40 space-y-4">
+              <span className="font-sans text-xs uppercase tracking-widest text-[#dfff24] font-bold block">
+                [Phase 02] The Strategy &amp; Execution
+              </span>
+              <p className="text-zinc-300 text-sm sm:text-base leading-relaxed font-normal">
                 {project.solution || project.overview}
               </p>
             </div>
 
           </div>
 
-          {/* ================= SECTION: THE MEASURED BUSINESS RESULTS ================= */}
+          {/* SECTION: THE MEASURED BUSINESS RESULTS */}
           {(project.stats && project.stats.length > 0) && (
             <div className="space-y-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-[#dfff24]/10 border border-[#dfff24]/30 flex items-center justify-center">
-                  <BarChart3 className="w-4 h-4 text-[#dfff24]" />
-                </div>
-                <div>
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#dfff24] font-bold block">
-                    Verified ROI &amp; Performance
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Measurable Campaign Results
-                  </h3>
-                </div>
+              <div>
+                <span className="font-sans text-xs uppercase tracking-widest text-[#dfff24] font-bold block">
+                  Verified ROI &amp; Performance
+                </span>
+                <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mt-1">
+                  Measurable Campaign Results
+                </h3>
               </div>
 
               {/* Stat Grid */}
@@ -247,24 +209,26 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 {project.stats.map((stat, idx) => (
                   <div
                     key={idx}
-                    className="p-5 rounded-2xl bg-zinc-950 border border-white/10 hover:border-[#dfff24]/50 transition-colors group"
+                    className="p-5 rounded-2xl glass-card border border-white/10 hover:border-[#dfff24]/50 transition-colors group"
                   >
-                    <p className="text-xs font-mono text-zinc-400 uppercase tracking-wider mb-1">
+                    <p className="text-xs font-sans text-zinc-400 uppercase tracking-wider mb-1">
                       {stat.label}
                     </p>
-                    <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-mono group-hover:text-[#dfff24] transition-colors">
+                    <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-sans group-hover:text-[#dfff24] transition-colors">
                       {stat.value}
                     </p>
                   </div>
                 ))}
               </div>
 
-              {/* Bullet Points */}
+              {/* Qualitative Result bullets */}
               {project.results && project.results.length > 0 && (
-                <div className="mt-4 p-5 rounded-2xl bg-zinc-950/60 border border-white/5 space-y-2.5">
+                <div className="mt-4 p-5 rounded-2xl glass-card border border-white/5 space-y-2.5">
                   {project.results.map((res, i) => (
                     <div key={i} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 text-[#dfff24] shrink-0 mt-0.5" />
+                      <span className="text-[#dfff24] font-bold font-sans text-xs shrink-0 mt-0.5">
+                        //
+                      </span>
                       <p className="text-sm text-zinc-300 font-medium">
                         {res}
                       </p>
@@ -275,34 +239,32 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             </div>
           )}
 
-          {/* ================= SECTION: DELIVERABLES CHECKLIST ================= */}
+          {/* SECTION: DELIVERABLES CHECKLIST */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2">
-              <Layers className="w-4 h-4 text-[#dfff24]" />
-              <span>Campaign Deliverables &amp; Assets Produced</span>
+            <h3 className="text-lg font-bold text-white">
+              Campaign Deliverables &amp; Assets Produced
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {project.deliverables.map((item, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-3 p-3.5 rounded-xl bg-zinc-950 border border-white/10 text-sm text-zinc-200"
+                  className="flex items-center gap-3 p-3.5 rounded-xl glass-card border border-white/10 text-sm text-zinc-200"
                 >
-                  <div className="w-5 h-5 rounded-full bg-[#dfff24]/10 text-[#dfff24] flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </div>
+                  <span className="font-sans text-xs font-bold text-[#dfff24]">
+                    0{idx + 1}
+                  </span>
                   <span>{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* ================= SECTION: CAMPAIGN STILLS GALLERY ================= */}
+          {/* SECTION: CAMPAIGN STILLS GALLERY */}
           {allImages.length > 1 && (
             <div className="space-y-4">
-              <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                <Maximize2 className="w-4 h-4 text-[#dfff24]" />
-                <span>Production Stills &amp; Visual Assets</span>
+              <h3 className="text-lg font-bold text-white">
+                Production Stills &amp; Visual Assets
               </h3>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -325,10 +287,10 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             </div>
           )}
 
-          {/* ================= BOTTOM ACTION BANNER ================= */}
-          <div className="p-8 rounded-3xl bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 border border-[#dfff24]/40 flex flex-col sm:flex-row items-center justify-between gap-6">
+          {/* BOTTOM ACTION BANNER */}
+          <div className="p-8 rounded-3xl glass-card border border-[#dfff24]/40 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1 text-center sm:text-left">
-              <p className="text-xs font-mono uppercase text-[#dfff24] font-bold tracking-wider">
+              <p className="text-xs font-sans uppercase text-[#dfff24] font-bold tracking-wider">
                 Partner with Visual Studios Plus
               </p>
               <h4 className="text-xl sm:text-2xl font-black text-white">
@@ -345,9 +307,9 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                   onClose();
                   onOpenInquiry();
                 }}
-                className="px-6 py-3.5 rounded-full bg-[#dfff24] text-black font-extrabold text-sm hover:scale-105 transition-all shadow-xl cursor-pointer"
+                className="px-6 py-3.5 rounded-full bg-[#dfff24] text-black font-extrabold text-sm uppercase tracking-wider hover:scale-105 transition-all shadow-xl cursor-pointer"
               >
-                Start a Project Brief
+                Start a Project Brief →
               </button>
             </div>
           </div>
