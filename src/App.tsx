@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Lenis from "lenis";
 import { Navbar, NavPageId } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
+import { TrustedPartnersTicker } from './components/TrustedPartnersTicker.tsx';
 import { BrandStatementSequence } from './components/BrandStatementSequence.tsx';
 import { HomeFeaturedWork } from './components/HomeFeaturedWork.tsx';
 import { HomeServicesTeaser } from './components/HomeServicesTeaser.tsx';
@@ -110,6 +111,9 @@ export default function App() {
               onOpenProjectInquiry={() => setIsProjectInquiryOpen(true)}
               onNavigate={handleNavigate}
             />
+
+            {/* TRUSTED PARTNER BRANDS TICKER MARQUEE IN ONE CONTINUOUS LINE */}
+            <TrustedPartnersTicker />
 
             {/* AGENCY OPERATING PHILOSOPHY AUTO-SLIDING SLIDESHOW */}
             <BrandStatementSequence />

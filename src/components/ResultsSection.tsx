@@ -11,7 +11,6 @@ interface VerifiableImpactItem {
   deliverables: string[];
   imageUrl: string;
   logoUrl?: string;
-  badgeBg?: string;
 }
 
 const VERIFIABLE_IMPACTS: VerifiableImpactItem[] = [
@@ -21,9 +20,9 @@ const VERIFIABLE_IMPACTS: VerifiableImpactItem[] = [
     category: 'FMCG & Beauty',
     metricNumber: '+142%',
     metricLabel: 'Social Engagement Lift',
-    context: 'Viral social launch campaign outperforming all previous category FMCG benchmarks across South Asia.',
+    context: 'Viral social launch campaign outperforming all previous category FMCG benchmarks across South Asia with cinema-grade vertical storytelling.',
     deliverables: ['TikTok Viral Hooks', 'High-Fidelity Reel Production', 'Influencer Seeding'],
-    imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=80',
     logoUrl: 'https://visualstudiosplus.com/wp-content/uploads/2024/09/Unilever-A.png',
   },
   {
@@ -32,9 +31,9 @@ const VERIFIABLE_IMPACTS: VerifiableImpactItem[] = [
     category: 'Luxury FMCG & Fashion',
     metricNumber: '1.2M+',
     metricLabel: 'Campaign Reach in 48h',
-    context: 'Real-time runway drops and designer coffee storytelling delivered while the catwalk lights were still on.',
+    context: 'Real-time runway drops and designer coffee storytelling delivered while the catwalk lights were still on, setting an industry speed standard.',
     deliverables: ['<45-Min Runway Edits', 'Instagram Broadcasts', 'Executive Backstage Coverage'],
-    imageUrl: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1600&q=80',
     logoUrl: 'https://visualstudiosplus.com/wp-content/uploads/2024/09/Colombo-Fashion-Week-Logo-A.png',
   },
   {
@@ -43,9 +42,9 @@ const VERIFIABLE_IMPACTS: VerifiableImpactItem[] = [
     category: 'FMCG Food & Confectionery',
     metricNumber: '320K+',
     metricLabel: 'Direct Social Interactions',
-    context: 'Bespoke AI visual concepts combined with physical stop-motion confectionery films for seasonal campaigns.',
+    context: 'Bespoke AI visual concepts combined with physical stop-motion confectionery films for high-velocity seasonal FMCG campaigns.',
     deliverables: ['Generative AI Concepts', 'Macro Stop-Motion', 'FMCG Digital Ads'],
-    imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=1400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=1600&q=80',
     logoUrl: 'https://visualstudiosplus.com/wp-content/uploads/2024/09/Munchee-Logo-a.png',
   },
   {
@@ -54,9 +53,9 @@ const VERIFIABLE_IMPACTS: VerifiableImpactItem[] = [
     category: 'International Fashion',
     metricNumber: '20K+',
     metricLabel: 'Engagement Per Video Drop',
-    context: 'High-energy on-ground digital video crew capturing Sri Lanka’s premier fashion event with instant publishing.',
+    context: 'High-energy on-ground digital video crew capturing Sri Lanka’s premier fashion event with instant publishing and global press syndication.',
     deliverables: ['Live Media War Room', 'Multi-Platform Reels', 'Broadcast Runway Master'],
-    imageUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1600&q=80',
     logoUrl: 'https://visualstudiosplus.com/wp-content/uploads/2024/09/Colombo-Fashion-Week-Logo-A.png',
   },
   {
@@ -65,9 +64,9 @@ const VERIFIABLE_IMPACTS: VerifiableImpactItem[] = [
     category: 'Global Beverage',
     metricNumber: '+68%',
     metricLabel: 'YoY Social Follower Growth',
-    context: 'End-to-end multi-year channel management retainer establishing a refined global aesthetic and community.',
+    context: 'End-to-end multi-year channel management retainer establishing a refined global British aesthetic and loyal community across key markets.',
     deliverables: ['Monthly Social Retainer', 'Global Brand Photography', 'Paid Media Strategy'],
-    imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1600&q=80',
     logoUrl: 'https://visualstudiosplus.com/wp-content/uploads/2024/09/Ahmad_Tea_logo-a.png',
   },
   {
@@ -76,349 +75,501 @@ const VERIFIABLE_IMPACTS: VerifiableImpactItem[] = [
     category: 'Luxury Tableware',
     metricNumber: '8K',
     metricLabel: 'Photorealistic CGI Fidelity',
-    context: 'Architectural fluid simulation and photorealistic 3D product renders designed for global export markets.',
+    context: 'Architectural fluid simulation and photorealistic 3D product renders designed for global export markets, luxury hospitality, and catalogues.',
     deliverables: ['Houdini Fluid Physics', '8K Cinema Renders', 'Export Catalogues'],
-    imageUrl: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1400&q=80',
+    imageUrl: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1600&q=80',
     logoUrl: 'https://visualstudiosplus.com/wp-content/uploads/2024/09/Dankotuwa-Logo-A.png',
   }
 ];
-
-const AUTO_SLIDE_DURATION = 4200; // 4.2 seconds per slide
 
 interface ResultsSectionProps {
   onOpenProjectInquiry?: () => void;
 }
 
 export const ResultsSection: React.FC<ResultsSectionProps> = ({ onOpenProjectInquiry }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const progressBarRef = useRef<HTMLDivElement>(null);
+  const counterRef = useRef<HTMLSpanElement>(null);
 
-  // Auto-sliding slideshow loop
+  // Direct DOM Element Refs for 60/120fps GPU updates without React re-rendering
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const imageRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const metricNumRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+  const metricTextRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const badgeRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Active state for discrete UI indicators
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
+  // Continuous interpolation refs (smooth momentum scrub layer)
+  const rawTargetProgressRef = useRef(0);
+  const currentProgressRef = useRef(0);
+  const activeSlideIndexRef = useRef(0);
+
+  // Preload all background images into GPU memory on mount to guarantee zero flashing
   useEffect(() => {
-    if (isPaused) return;
+    VERIFIABLE_IMPACTS.forEach((item) => {
+      const img = new Image();
+      img.src = item.imageUrl;
+    });
+  }, []);
 
-    timerRef.current = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % VERIFIABLE_IMPACTS.length);
-    }, AUTO_SLIDE_DURATION);
+  // Dedicated RAF animation loop with lerp buffer & direct DOM manipulation
+  useEffect(() => {
+    let animationFrameId: number;
+
+    const handleScroll = () => {
+      if (!trackRef.current) return;
+      const rect = trackRef.current.getBoundingClientRect();
+      const trackHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      const maxScroll = trackHeight - viewportHeight;
+
+      if (maxScroll <= 0) return;
+
+      const scrollDistance = -rect.top;
+      const normalized = Math.max(0, Math.min(1, scrollDistance / maxScroll));
+      rawTargetProgressRef.current = normalized * (VERIFIABLE_IMPACTS.length - 1);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll();
+
+    // High-performance continuous interpolation loop
+    const tick = () => {
+      const target = rawTargetProgressRef.current;
+      const current = currentProgressRef.current;
+
+      // Silky momentum lerp (~0.092 factor creates an Apple-style continuous scrub cushion)
+      const diff = target - current;
+      if (Math.abs(diff) > 0.0001) {
+        currentProgressRef.current += diff * 0.092;
+      } else {
+        currentProgressRef.current = target;
+      }
+
+      const p = currentProgressRef.current;
+      updateWipeDOM(p);
+
+      animationFrameId = requestAnimationFrame(tick);
+    };
+
+    animationFrameId = requestAnimationFrame(tick);
 
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
     };
-  }, [isPaused, activeSlide]);
+  }, []);
+
+  // Update DOM directly per frame — Zero layout thrashing, zero React re-renders
+  const updateWipeDOM = (p: number) => {
+    for (let idx = 0; idx < VERIFIABLE_IMPACTS.length; idx++) {
+      const slideEl = slideRefs.current[idx];
+      const imgEl = imageRefs.current[idx];
+      const cardEl = cardRefs.current[idx];
+      const numEl = metricNumRefs.current[idx];
+      const textEl = metricTextRefs.current[idx];
+      const badgeEl = badgeRefs.current[idx];
+
+      if (!slideEl) continue;
+
+      if (idx === 0) {
+        // Slide 0: Base canvas, always underneath
+        slideEl.style.clipPath = 'inset(0 0 0 0%)';
+        slideEl.style.visibility = 'visible';
+
+        // Subtle parallax as slide 1 wipes over it
+        const exitProgress = Math.min(1, Math.max(0, p));
+        if (imgEl) {
+          const s = 1 - exitProgress * 0.02;
+          const x = -exitProgress * 20;
+          imgEl.style.transform = `scale(${s.toFixed(4)}) translateX(${x.toFixed(1)}px)`;
+        }
+        if (numEl) {
+          numEl.style.opacity = `${(1 - exitProgress * 0.85).toFixed(3)}`;
+          numEl.style.transform = `translateY(${(-exitProgress * 15).toFixed(1)}px)`;
+        }
+        if (cardEl) {
+          cardEl.style.opacity = `${(1 - exitProgress * 0.9).toFixed(3)}`;
+          cardEl.style.transform = `translateX(${(-exitProgress * 25).toFixed(1)}px)`;
+        }
+      } else {
+        // Incoming slide over previous slide: wipes RIGHT -> LEFT
+        const localProgress = p - (idx - 1);
+
+        if (localProgress <= 0) {
+          // Off to the right
+          slideEl.style.clipPath = 'inset(0 0 0 100%)';
+          slideEl.style.visibility = 'hidden';
+        } else if (localProgress >= 1) {
+          // Fully wiped in
+          slideEl.style.clipPath = 'inset(0 0 0 0%)';
+          slideEl.style.visibility = 'visible';
+
+          // Exit drift if next slide wipes over this one
+          const nextLocal = p - idx;
+          const nextExit = Math.min(1, Math.max(0, nextLocal));
+          if (imgEl) {
+            const s = 1 - nextExit * 0.02;
+            const x = -nextExit * 20;
+            imgEl.style.transform = `scale(${s.toFixed(4)}) translateX(${x.toFixed(1)}px)`;
+          }
+          if (numEl) {
+            numEl.style.opacity = `${(1 - nextExit * 0.85).toFixed(3)}`;
+            numEl.style.transform = `translateY(${(-nextExit * 15).toFixed(1)}px)`;
+          }
+          if (cardEl) {
+            cardEl.style.opacity = `${(1 - nextExit * 0.9).toFixed(3)}`;
+            cardEl.style.transform = `translateX(${(-nextExit * 25).toFixed(1)}px)`;
+          }
+          if (badgeEl) badgeEl.style.opacity = `${(1 - nextExit * 0.9).toFixed(3)}`;
+          if (textEl) textEl.style.opacity = `${(1 - nextExit * 0.9).toFixed(3)}`;
+        } else {
+          // ACTIVELY WIPING: Progressive clip-path from Right to Left
+          const leftInset = (1 - localProgress) * 100;
+          slideEl.style.clipPath = `inset(0 0 0 ${leftInset.toFixed(3)}%)`;
+          slideEl.style.visibility = 'visible';
+
+          // Incoming Image: scale(1.05) settling to scale(1.0) with subtle parallax
+          if (imgEl) {
+            const scale = 1.05 - 0.05 * localProgress;
+            const xShift = (1 - localProgress) * 20;
+            imgEl.style.transform = `scale(${scale.toFixed(4)}) translateX(${xShift.toFixed(1)}px)`;
+          }
+
+          // Incoming Metric Number: masked reveal & upward movement
+          if (numEl) {
+            const y = (1 - localProgress) * 25;
+            const op = Math.min(1, localProgress * 1.5);
+            numEl.style.transform = `translateY(${y.toFixed(1)}px)`;
+            numEl.style.opacity = op.toFixed(3);
+          }
+
+          // Incoming Client & Category Badge: reveals early
+          if (badgeEl) {
+            const y = (1 - localProgress) * 16;
+            const op = Math.min(1, localProgress * 1.8);
+            badgeEl.style.transform = `translateY(${y.toFixed(1)}px)`;
+            badgeEl.style.opacity = op.toFixed(3);
+          }
+
+          // Incoming Metric Narrative: rises smoothly
+          if (textEl) {
+            const y = (1 - localProgress) * 18;
+            const op = Math.max(0, (localProgress - 0.1) * 1.3);
+            textEl.style.transform = `translateY(${y.toFixed(1)}px)`;
+            textEl.style.opacity = op.toFixed(3);
+          }
+
+          // Incoming Visual Campaign Card: slides in from right
+          if (cardEl) {
+            const x = (1 - localProgress) * 30;
+            const op = Math.min(1, localProgress * 1.4);
+            cardEl.style.transform = `translateX(${x.toFixed(1)}px)`;
+            cardEl.style.opacity = op.toFixed(3);
+          }
+        }
+      }
+    }
+
+    // Update real-time progress line
+    if (progressBarRef.current) {
+      const pct = (p / (VERIFIABLE_IMPACTS.length - 1)) * 100;
+      progressBarRef.current.style.width = `${Math.min(100, Math.max(0, pct)).toFixed(2)}%`;
+    }
+
+    // Update discrete integer index only when crossing threshold
+    const roundedIndex = Math.min(Math.round(p), VERIFIABLE_IMPACTS.length - 1);
+    if (roundedIndex !== activeSlideIndexRef.current) {
+      activeSlideIndexRef.current = roundedIndex;
+      setActiveSlideIndex(roundedIndex);
+
+      if (counterRef.current) {
+        counterRef.current.textContent = `0${roundedIndex + 1} / 0${VERIFIABLE_IMPACTS.length}`;
+      }
+    }
+  };
+
+  // Smooth momentum scroll to a specific slide (shared animation source of truth)
+  const scrollToSlide = (targetIdx: number) => {
+    if (!trackRef.current) return;
+    const track = trackRef.current;
+    const trackTop = track.getBoundingClientRect().top + window.scrollY;
+    const maxScroll = track.offsetHeight - window.innerHeight;
+    const targetOffset = trackTop + (targetIdx / (VERIFIABLE_IMPACTS.length - 1)) * maxScroll;
+
+    const lenis = (window as any).__lenis;
+    if (lenis) {
+      lenis.scrollTo(targetOffset, { duration: 0.95 });
+    } else {
+      window.scrollTo({ top: targetOffset, behavior: 'smooth' });
+    }
+  };
 
   const handlePrev = () => {
-    setActiveSlide((prev) => (prev - 1 + VERIFIABLE_IMPACTS.length) % VERIFIABLE_IMPACTS.length);
+    const prevIdx = Math.max(0, activeSlideIndex - 1);
+    scrollToSlide(prevIdx);
   };
 
   const handleNext = () => {
-    setActiveSlide((prev) => (prev + 1) % VERIFIABLE_IMPACTS.length);
+    const nextIdx = Math.min(VERIFIABLE_IMPACTS.length - 1, activeSlideIndex + 1);
+    scrollToSlide(nextIdx);
   };
 
-  const currentItem = VERIFIABLE_IMPACTS[activeSlide];
+  // Keyboard navigation when presentation section is in viewport
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!trackRef.current) return;
+      const rect = trackRef.current.getBoundingClientRect();
+      const inView = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+      if (!inView) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        const nextTarget = Math.min(VERIFIABLE_IMPACTS.length - 1, activeSlideIndex + 1);
+        if (nextTarget !== activeSlideIndex) {
+          e.preventDefault();
+          scrollToSlide(nextTarget);
+        }
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        const prevTarget = Math.max(0, activeSlideIndex - 1);
+        if (prevTarget !== activeSlideIndex) {
+          e.preventDefault();
+          scrollToSlide(prevTarget);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeSlideIndex]);
 
   return (
     <section 
-      id="results" 
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      className="py-24 sm:py-32 border-b border-white/10 relative overflow-hidden bg-[#0c0e0c]"
+      ref={trackRef}
+      id="results"
+      style={{ height: `${VERIFIABLE_IMPACTS.length * 100}vh` }}
+      className="relative border-b border-white/10 select-none bg-[#0c0e0c]"
     >
-      {/* BRAND LOGOS BACKGROUND WATERMARK MOSAIC */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-        <div className="absolute inset-0 flex flex-col justify-around opacity-20 py-6 space-y-6">
-          <div className="flex items-center gap-6 animate-marquee whitespace-nowrap">
-            {[...CLIENT_PARTNERS, ...CLIENT_PARTNERS, ...CLIENT_PARTNERS].map((client, idx) => (
-              <div 
-                key={`b1-${client.name}-${idx}`} 
-                className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/90 shadow-md shrink-0 border border-white/20"
-              >
-                {client.logoUrl ? (
-                  <img
-                    src={client.logoUrl}
-                    alt={client.name}
-                    className="h-7 max-w-[110px] object-contain filter contrast-125"
-                  />
-                ) : (
-                  <span className="text-xs font-bold text-black uppercase tracking-wider">
-                    {client.name}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
+      {/* 100vh Sticky Viewport Presentation Pin */}
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
+        
+        {/* ================= SLIDES STACK WITH FLUID POWERPOINT WIPE ================= */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {VERIFIABLE_IMPACTS.map((item, idx) => (
+            <div
+              key={item.id}
+              ref={(el) => {
+                slideRefs.current[idx] = el;
+              }}
+              className="absolute inset-0 w-full h-full overflow-hidden will-change-[clip-path]"
+              style={{
+                zIndex: 10 + idx,
+                clipPath: idx === 0 ? 'inset(0 0 0 0%)' : 'inset(0 0 0 100%)',
+                visibility: idx === 0 ? 'visible' : 'hidden',
+              }}
+            >
+              {/* Full-Screen Cinema-Grade Background with Subtle Settle & Dark Gradients */}
+              <img
+                ref={(el) => {
+                  imageRefs.current[idx] = el;
+                }}
+                src={item.imageUrl}
+                alt={`${item.client} - ${item.metricLabel}`}
+                loading="eager"
+                className="w-full h-full object-cover object-center filter contrast-125 brightness-50 will-change-transform"
+              />
 
-          <div className="flex items-center gap-6 animate-marquee-reverse whitespace-nowrap">
-            {[...CLIENT_PARTNERS.slice().reverse(), ...CLIENT_PARTNERS, ...CLIENT_PARTNERS].map((client, idx) => (
-              <div 
-                key={`b2-${client.name}-${idx}`} 
-                className="flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-white/90 shadow-md shrink-0 border border-white/20"
-              >
-                {client.logoUrl ? (
-                  <img
-                    src={client.logoUrl}
-                    alt={client.name}
-                    className="h-7 max-w-[110px] object-contain filter contrast-125"
-                  />
-                ) : (
-                  <span className="text-xs font-bold text-black uppercase tracking-wider">
-                    {client.name}
-                  </span>
-                )}
+              {/* High-contrast dark gradient overlays for pristine legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e0c] via-black/75 to-[#0c0e0c]/90 pointer-events-none" />
+              <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none" />
+
+              {/* Editorial Slide Content Composition with Guaranteed Clearance from Top Header */}
+              <div className="absolute inset-0 z-10 flex flex-col justify-center px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto w-full pt-32 sm:pt-36 md:pt-40 pb-6 sm:pb-10 pointer-events-none">
+                <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center my-auto">
+                  
+                  {/* Left Column: Dominant Kinetic Metric & Impact Story */}
+                  <div className="lg:col-span-7 space-y-4 sm:space-y-5 lg:space-y-6 text-left">
+                    
+                    {/* Client & Category Badge - Clear separation from top header bar */}
+                    <div 
+                      ref={(el) => {
+                        badgeRefs.current[idx] = el;
+                      }}
+                      className="inline-flex items-center gap-2 sm:gap-3 will-change-transform mb-1 sm:mb-2"
+                    >
+                      <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full glass-card border border-white/15 text-[11px] sm:text-xs font-bold text-[#dfff24] tracking-widest uppercase shadow-xl flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#dfff24] animate-pulse" />
+                        {item.category}
+                      </span>
+                      <span className="px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[11px] sm:text-xs font-semibold text-zinc-200 flex items-center gap-2">
+                        <span>Client:</span>
+                        <strong className="text-white font-bold">{item.client}</strong>
+                      </span>
+                    </div>
+
+                    {/* Dominant Kinetic Metric Number */}
+                    <div>
+                      <p 
+                        ref={(el) => {
+                          metricNumRefs.current[idx] = el;
+                        }}
+                        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-[#dfff24] tracking-tighter leading-none drop-shadow-2xl will-change-transform"
+                      >
+                        {item.metricNumber}
+                      </p>
+                    </div>
+
+                    {/* Metric Label & Context Description */}
+                    <div 
+                      ref={(el) => {
+                        metricTextRefs.current[idx] = el;
+                      }}
+                      className="space-y-4 max-w-xl will-change-transform"
+                    >
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight drop-shadow-lg">
+                        {item.metricLabel}
+                      </h3>
+                      
+                      <p className="text-sm sm:text-base md:text-lg text-zinc-300 font-normal leading-relaxed drop-shadow-md">
+                        {item.context}
+                      </p>
+
+                      {/* Deliverables Tags */}
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        {item.deliverables.map((deliv, dIdx) => (
+                          <span 
+                            key={dIdx}
+                            className="text-xs font-semibold px-3 py-1.5 rounded-full glass-panel border border-white/15 text-zinc-200 shadow-md"
+                          >
+                            ✓ {deliv}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* CTA Button */}
+                      {onOpenProjectInquiry && (
+                        <div className="pt-3 pointer-events-auto">
+                          <button
+                            onClick={onOpenProjectInquiry}
+                            type="button"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#dfff24] text-black font-extrabold text-xs uppercase tracking-widest hover:bg-white transition-all shadow-2xl cursor-pointer hover:scale-105"
+                          >
+                            <span>Commission Similar Campaign</span>
+                            <span>→</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+
+                  </div>
+
+                  {/* Right Column: High-Impact Visual Card Preview with Client Logo Badge */}
+                  <div className="hidden lg:block lg:col-span-5">
+                    <div 
+                      ref={(el) => {
+                        cardRefs.current[idx] = el;
+                      }}
+                      className="aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/20 shadow-2xl group bg-zinc-950 will-change-transform"
+                    >
+                      <img
+                        src={item.imageUrl}
+                        alt={`${item.client} campaign capture`}
+                        className="w-full h-full object-cover object-center filter contrast-115 brightness-95 group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                      
+                      {/* Floating Client Authenticity Badge */}
+                      <div className="absolute top-4 left-4 z-20">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-bold text-white shadow-xl">
+                          <span className="w-2 h-2 rounded-full bg-[#dfff24] animate-pulse" />
+                          <span>VERIFIED PRODUCTION</span>
+                        </div>
+                      </div>
+
+                      {/* Client Logo & Metric Bar */}
+                      <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-2.5">
+                          {item.logoUrl && (
+                            <div className="px-2.5 py-1 rounded-lg bg-white/90 shadow">
+                              <img src={item.logoUrl} alt={item.client} className="h-4 max-w-[70px] object-contain" />
+                            </div>
+                          )}
+                          <span className="font-bold text-white tracking-wide">
+                            {item.client}
+                          </span>
+                        </div>
+                        <span className="font-bold text-[#dfff24] font-mono">
+                          0{idx + 1} / 0{VERIFIABLE_IMPACTS.length}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
-        {/* Cinematic dark gradients for crystal-clear readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e0c] via-black/80 to-[#0c0e0c]" />
-        <div className="absolute inset-0 bg-[#0c0e0c]/60 backdrop-blur-[2px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 pb-8 border-b border-white/10">
-          <div>
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-card border border-white/10 mb-4">
-              <span className="w-2 h-2 rounded-full bg-[#dfff24] animate-pulse" />
-              <span className="text-xs uppercase tracking-widest text-[#dfff24] font-bold">
-                Commercial Attributions
+        {/* ================= FIXED TOP NAVIGATION OVERLAY (Z-50) ================= */}
+        <div className="relative z-50 pt-20 sm:pt-24 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full pointer-events-auto">
+          <div className="flex items-center justify-between gap-2 sm:gap-4 pb-3 sm:pb-4 border-b border-white/10 flex-nowrap w-full">
+            
+            {/* Header Badge: Single line on mobile */}
+            <div className="inline-flex items-center gap-1.5 sm:gap-2.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full glass-card border border-white/10 shrink min-w-0">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#dfff24] animate-pulse shrink-0" />
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-[#dfff24] font-bold whitespace-nowrap">
+                <span className="hidden sm:inline">Commercial Attributions</span>
+                <span className="sm:hidden">Attributions</span>
               </span>
-              <span className="text-zinc-600">|</span>
-              <span className="text-xs text-zinc-300 font-medium">
+              <span className="text-zinc-600 hidden md:inline">|</span>
+              <span className="text-xs text-zinc-300 font-medium whitespace-nowrap hidden md:inline">
                 Verified Business Impact Slideshow
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
-              We take projects for businesses. <br />
-              <span className="text-[#dfff24]">Here are the verified results</span>.
-            </h2>
-          </div>
-
-          <p className="text-sm text-zinc-300 max-w-md font-medium leading-relaxed">
-            No vanity metrics. Every campaign is audited against tangible commercial benchmarks: 
-            engagement lift, audience growth, brand sentiment, and measurable revenue recall.
-          </p>
-        </div>
-
-        {/* MAIN SLIDESHOW SHOWCASE: Impact Metric + Campaign Image */}
-        <div className="relative rounded-3xl overflow-hidden glass-card border border-white/10 shadow-2xl p-6 sm:p-10 lg:p-12 mb-8">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* Left Column: Metric & Impact Narrative */}
-            <div className="lg:col-span-6 space-y-6">
-              
-              {/* Client & Category Badge */}
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#dfff24] px-3.5 py-1 rounded-full bg-white/5 border border-white/10">
-                  {currentItem.category}
-                </span>
-                <span className="text-xs text-zinc-400 font-semibold">
-                  Client: <strong className="text-white">{currentItem.client}</strong>
-                </span>
-              </div>
-
-              {/* Dominant Verified Metric Number */}
-              <div className="space-y-1">
-                <p 
-                  key={`num-${currentItem.id}`}
-                  className="text-6xl sm:text-7xl lg:text-8xl font-black text-[#dfff24] tracking-tighter leading-none transition-all duration-500 animate-in fade-in zoom-in-95"
-                >
-                  {currentItem.metricNumber}
-                </p>
-                <h3 
-                  key={`label-${currentItem.id}`}
-                  className="text-2xl sm:text-3xl font-black text-white tracking-tight pt-2 transition-all duration-300"
-                >
-                  {currentItem.metricLabel}
-                </h3>
-              </div>
-
-              {/* Context Description */}
-              <p 
-                key={`desc-${currentItem.id}`}
-                className="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed transition-all duration-300"
+            {/* Slide Index Counter & Discreet Manual Arrows: Single line */}
+            <div className="flex items-center gap-2 sm:gap-4 text-xs shrink-0">
+              <span 
+                ref={counterRef}
+                className="text-zinc-300 font-bold tracking-wider font-mono text-[11px] sm:text-xs whitespace-nowrap"
               >
-                {currentItem.context}
-              </p>
+                0{activeSlideIndex + 1} / 0{VERIFIABLE_IMPACTS.length}
+              </span>
 
-              {/* Production Deliverables Tags */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                {currentItem.deliverables.map((item, idx) => (
-                  <span 
-                    key={idx}
-                    className="text-xs font-semibold px-3 py-1 rounded-full glass-panel border border-white/10 text-zinc-200"
-                  >
-                    ✓ {item}
-                  </span>
-                ))}
-              </div>
-
-              {/* Action Button */}
-              {onOpenProjectInquiry && (
-                <div className="pt-4">
-                  <button
-                    onClick={onOpenProjectInquiry}
-                    type="button"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#dfff24] text-black font-extrabold text-xs uppercase tracking-wider hover:bg-white transition-all shadow-lg cursor-pointer"
-                  >
-                    <span>Request Similar Case Brief</span>
-                    <span>→</span>
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Right Column: High-Impact Campaign Visual in Slideshow Style */}
-            <div className="lg:col-span-6 relative">
-              <div className="aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden relative border border-white/15 shadow-2xl group bg-zinc-950">
-                
-                {/* Images Layer with Crossfade Transition */}
-                {VERIFIABLE_IMPACTS.map((impact, idx) => {
-                  const isCurrent = idx === activeSlide;
-                  return (
-                    <div
-                      key={impact.id}
-                      className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                        isCurrent 
-                          ? 'opacity-100 scale-100 z-10' 
-                          : 'opacity-0 scale-105 pointer-events-none z-0'
-                      }`}
-                    >
-                      <img
-                        src={impact.imageUrl}
-                        alt={`${impact.client} - ${impact.metricLabel}`}
-                        className="w-full h-full object-cover object-center filter contrast-110 brightness-90 group-hover:scale-105 transition-transform duration-1000"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    </div>
-                  );
-                })}
-
-                {/* Floating Authenticity Badge */}
-                <div className="absolute top-4 left-4 z-20">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white shadow-xl">
-                    <span className="w-2 h-2 rounded-full bg-[#dfff24] animate-pulse" />
-                    <span>VERIFIED PERFORMANCE</span>
-                  </div>
-                </div>
-
-                {/* Bottom Image Overlay with Client Name */}
-                <div className="absolute bottom-4 left-4 right-4 z-20 flex items-center justify-between text-xs text-zinc-300">
-                  <span className="font-bold text-white tracking-wide">
-                    {currentItem.client}
-                  </span>
-                  <span className="font-semibold text-[#dfff24]">
-                    Slide 0{activeSlide + 1} / 0{VERIFIABLE_IMPACTS.length}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          {/* SLIDESHOW BOTTOM CONTROL STRIP */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            
-            {/* Slide Progress Indicator Bar */}
-            <div className="w-full sm:w-64 bg-white/10 h-1 rounded-full overflow-hidden relative">
-              <div 
-                key={activeSlide}
-                className="h-full bg-[#dfff24] rounded-full"
-                style={{
-                  width: '100%',
-                  animation: isPaused ? 'none' : `progressAnim ${AUTO_SLIDE_DURATION}ms linear`
-                }}
-              />
-            </div>
-
-            {/* Quick Slide Navigation Dots */}
-            <div className="flex items-center gap-1.5">
-              {VERIFIABLE_IMPACTS.map((item, idx) => {
-                const isActive = idx === activeSlide;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveSlide(idx)}
-                    type="button"
-                    aria-label={`Jump to slide ${idx + 1}: ${item.client}`}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${
-                      isActive 
-                        ? 'w-8 bg-[#dfff24]' 
-                        : 'w-2 bg-white/25 hover:bg-white/50'
-                    }`}
-                  />
-                );
-              })}
-            </div>
-
-            {/* Manual Controls & Play/Pause */}
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setIsPaused(!isPaused)}
-                type="button"
-                className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 hover:text-white px-3 py-1 rounded-full border border-white/10 hover:border-white/30 transition-all cursor-pointer"
-              >
-                {isPaused ? '▶ Play' : '⏸ Pause'}
-              </button>
-              <div className="flex items-center gap-1.5">
+              {/* Discreet manual arrow controls */}
+              <div className="flex items-center gap-1 shrink-0">
                 <button
                   onClick={handlePrev}
                   type="button"
+                  disabled={activeSlideIndex === 0}
                   aria-label="Previous impact slide"
-                  className="w-8 h-8 rounded-full glass-card border border-white/10 hover:border-[#dfff24] text-zinc-300 hover:text-white flex items-center justify-center text-xs transition-all cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full glass-card border border-white/10 hover:border-[#dfff24] disabled:opacity-20 disabled:pointer-events-none text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer text-xs"
                 >
-                  ←
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                  </svg>
                 </button>
                 <button
                   onClick={handleNext}
                   type="button"
+                  disabled={activeSlideIndex === VERIFIABLE_IMPACTS.length - 1}
                   aria-label="Next impact slide"
-                  className="w-8 h-8 rounded-full glass-card border border-white/10 hover:border-[#dfff24] text-zinc-300 hover:text-white flex items-center justify-center text-xs transition-all cursor-pointer"
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full glass-card border border-white/10 hover:border-[#dfff24] disabled:opacity-20 disabled:pointer-events-none text-zinc-300 hover:text-white flex items-center justify-center transition-all cursor-pointer text-xs"
                 >
-                  →
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
               </div>
             </div>
 
           </div>
-
         </div>
-
-        {/* Interactive Quick-Jump Thumbnails Strip */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {VERIFIABLE_IMPACTS.map((impact, idx) => {
-            const isActive = idx === activeSlide;
-            return (
-              <button
-                key={`thumb-${impact.id}`}
-                onClick={() => setActiveSlide(idx)}
-                type="button"
-                className={`p-3.5 rounded-2xl text-left transition-all duration-300 cursor-pointer border ${
-                  isActive 
-                    ? 'glass-card border-[#dfff24] bg-white/[0.08] shadow-lg scale-102' 
-                    : 'border-white/5 hover:border-white/20 bg-white/[0.02]'
-                }`}
-              >
-                <div className="flex items-center justify-between text-[11px] mb-1 font-bold">
-                  <span className={isActive ? 'text-[#dfff24]' : 'text-zinc-500'}>
-                    0{idx + 1}
-                  </span>
-                  <span className={isActive ? 'text-[#dfff24] font-black' : 'text-zinc-400'}>
-                    {impact.metricNumber}
-                  </span>
-                </div>
-                <p className={`text-xs font-bold truncate ${isActive ? 'text-white' : 'text-zinc-400'}`}>
-                  {impact.client}
-                </p>
-              </button>
-            );
-          })}
-        </div>
-
       </div>
     </section>
   );
