@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { CLIENT_PARTNERS, STUDIO_INFO } from '../data/projectsData.ts';
-import { VSPlusLogo } from './VSPlusLogo.tsx';
+import { STUDIO_INFO } from '../data/projectsData.ts';
 
 interface HeroProps {
   onOpenShowreel: () => void;
   onOpenProjectInquiry?: () => void;
+  onNavigate?: (pageId: 'work' | 'services') => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenShowreel, onNavigate }) => {
   const [scrollY, setScrollY] = useState(0);
   const [entered, setEntered] = useState(false);
 
@@ -28,6 +28,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
     };
   }, []);
 
+  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>, pageId: 'work' | 'services') => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(pageId);
+    }
+  };
+
   // Scroll-linked transforms: hero content moves upward, background scales slightly
   const contentTranslateY = Math.min(scrollY * 0.42, 280);
   const contentOpacity = Math.max(1 - scrollY / 700, 0);
@@ -42,7 +49,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           src={STUDIO_INFO.showreelUrl}
-          poster={STUDIO_INFO.heroCover}
           autoPlay
           loop
           muted
@@ -56,21 +62,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
           }}
         />
         
-        {/* Cinematic subtle glass gradient to ensure high video visibility while keeping text crisp */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e0c] via-black/35 to-black/40 pointer-events-none" />
-        <div className="absolute inset-0 bg-radial from-transparent via-transparent to-black/50 pointer-events-none" />
+        {/* Cinematic subtle dark gradient to ensure high video visibility while keeping text perfectly crisp */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0e0c] via-black/50 to-black/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-radial from-transparent via-black/30 to-black/65 pointer-events-none" />
       </div>
 
       {/* Main Content with Line-by-Line Staggered Cinematic Reveal */}
       <div 
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-12"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-16"
         style={{
           transform: `translateY(-${contentTranslateY}px)`,
           opacity: contentOpacity,
           transition: 'transform 0.08s ease-out'
         }}
       >
-        <div className="max-w-5xl space-y-6">
+        <div className="max-w-5xl space-y-7">
           
           {/* Subtle Logo mark intro */}
           <div 
@@ -79,10 +85,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
             }`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
           >
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full glass-card border border-white/10">
-              <span className="w-2 h-2 rounded-full bg-[#dfff24]" />
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full glass-card border border-white/10">
+              <span className="w-2 h-2 rounded-full bg-[#dfff24] animate-pulse" />
               <span className="text-[11px] font-sans uppercase tracking-widest text-zinc-300 font-bold">
-                VISUAL STUDIOS+
+                VISUAL STUDIOS+ · CREATIVE AGENCY
               </span>
             </div>
           </div>
@@ -113,34 +119,36 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
 
           {/* Supporting Text */}
           <p 
-            className={`text-base sm:text-lg md:text-xl text-zinc-200 max-w-2xl font-normal leading-relaxed pt-2 drop-shadow-md transition-all duration-[1200ms] delay-600 ${
+            className={`text-base sm:text-lg md:text-xl text-zinc-200 max-w-2xl font-normal leading-relaxed pt-1 drop-shadow-md transition-all duration-[1200ms] delay-600 ${
               entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
           >
             Colombo’s premier digital marketing, social media campaigns, and content creation agency. 
-            We take projects for ambitious businesses and deliver measurable results through viral social storytelling.
+            We partner with ambitious brands to command attention and deliver verified commercial growth.
           </p>
 
-          {/* Action CTAs — Text only, zero icons */}
+          {/* Action CTAs */}
           <div 
-            className={`flex flex-wrap items-center gap-4 pt-6 transition-all duration-[1200ms] delay-700 ${
+            className={`flex flex-wrap items-center gap-4 pt-4 transition-all duration-[1200ms] delay-700 ${
               entered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
             style={{ transitionTimingFunction: 'cubic-bezier(0.22, 1, 0.36, 1)' }}
           >
             <a
-              href="#statement"
-              className="px-7 py-4 bg-[#dfff24] text-black font-extrabold text-xs uppercase tracking-widest rounded-full hover:bg-white transition-all duration-300 hover:scale-105 shadow-xl"
+              href="#work"
+              onClick={(e) => handleCtaClick(e, 'work')}
+              className="px-7 py-4 bg-[#dfff24] text-black font-extrabold text-xs uppercase tracking-widest rounded-full hover:bg-white transition-all duration-300 hover:scale-105 shadow-xl cursor-pointer"
             >
-              See Business Results ↓
+              Explore Projects ↓
             </a>
 
             <a
-              href="#work"
-              className="px-7 py-4 glass-card border border-white/20 hover:border-white text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 hover:scale-105 shadow-md"
+              href="#services"
+              onClick={(e) => handleCtaClick(e, 'services')}
+              className="px-7 py-4 glass-card border border-white/20 hover:border-white text-white font-bold text-xs uppercase tracking-widest rounded-full transition-all duration-300 hover:scale-105 shadow-md cursor-pointer"
             >
-              Explore Projects
+              Our Services
             </a>
 
             <button
@@ -155,48 +163,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenShowreel }) => {
         </div>
       </div>
 
-      {/* Client Marquee Carousel with Glass Effect & Original Colored Logos (Zero Icons) */}
-      <div className="relative z-10 w-full pt-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-card border border-white/10">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#dfff24]" />
-            <p className="text-xs sm:text-xs font-bold text-zinc-200 tracking-wide uppercase font-sans">
-              Trusted by global powerhouses &amp; Sri Lanka’s leading consumer brands
-            </p>
-          </div>
-        </div>
-
-        {/* Continuous scrolling ticker with ORIGINAL LOGOS AND TRUE BRAND COLORS */}
-        <div className="relative w-full overflow-hidden mask-gradient-x border-y border-white/10 py-4 glass-panel">
-          <div className="animate-marquee flex items-center gap-8 sm:gap-10">
-            {[...CLIENT_PARTNERS, ...CLIENT_PARTNERS].map((client, idx) => (
-              <div
-                key={`${client.name}-${idx}`}
-                className="flex items-center gap-3.5 shrink-0 px-4 py-2 rounded-xl bg-white hover:bg-zinc-100 transition-all shadow-md cursor-pointer group hover:scale-105"
-                title={`${client.name} — ${client.category}`}
-              >
-                {client.logoUrl ? (
-                  <img
-                    src={client.logoUrl}
-                    alt={client.name}
-                    className="h-8 max-w-[130px] object-contain transition-transform duration-200 group-hover:scale-105"
-                  />
-                ) : (
-                  <span className="text-xs font-bold text-black uppercase font-sans">
-                    {client.name}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Scroll indicator at the bottom — Zero icons */}
-      <div className="relative z-10 text-center pt-4">
-        <span className="text-[10px] font-sans uppercase tracking-widest text-zinc-500 animate-pulse">
-          Scroll to explore ↓
-        </span>
+      {/* Clean bottom navigation prompt */}
+      <div className="relative z-10 text-center pb-6">
+        <a 
+          href="#work"
+          onClick={(e) => handleCtaClick(e, 'work')}
+          className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-widest text-zinc-400 hover:text-[#dfff24] transition-colors cursor-pointer"
+        >
+          <span>Explore Selected Projects</span>
+          <span className="text-[#dfff24] animate-bounce">↓</span>
+        </a>
       </div>
     </section>
   );

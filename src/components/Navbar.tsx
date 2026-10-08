@@ -2,49 +2,48 @@ import React, { useState, useEffect } from 'react';
 import { STUDIO_INFO } from '../data/projectsData.ts';
 import { VSPlusLogo } from './VSPlusLogo.tsx';
 
+export type NavPageId = 'home' | 'work' | 'services' | 'about' | 'contact';
+
 interface NavbarProps {
+  activePage: NavPageId;
+  onNavigate: (pageId: NavPageId) => void;
   onOpenProjectInquiry: () => void;
   onOpenShowreel?: () => void;
-  activeSection?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
+  activePage,
+  onNavigate,
   onOpenProjectInquiry,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentSection, setCurrentSection] = useState('home');
 
-  const navLinks = [
-    { id: 'home', label: 'Home', href: '#home' },
-    { id: 'statement', label: 'Philosophy', href: '#statement' },
-    { id: 'work', label: 'Projects', href: '#work' },
-    { id: 'services', label: 'Services', href: '#services' },
-    { id: 'results', label: 'Results', href: '#results' },
-    { id: 'about', label: 'About', href: '#about' },
-    { id: 'contact', label: 'Contact', href: '#contact' },
+  const navLinks: { id: NavPageId; label: string }[] = [
+    { id: 'home', label: 'Home' },
+    { id: 'work', label: 'Projects' },
+    { id: 'services', label: 'Services' },
+    { id: 'about', label: 'About' },
+    { id: 'contact', label: 'Contact' },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: NavPageId) => {
+    e.preventDefault();
+    onNavigate(id);
+    setIsMobileMenuOpen(false);
+
+    // Smooth scroll to top when switching pages
+    const lenis = (window as any).__lenis;
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 0.8 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-
-      // Robust section detection
-      const scrollMid = window.scrollY + Math.min(window.innerHeight * 0.35, 300);
-      const sectionElements = navLinks
-        .map((link) => ({ id: link.id, el: document.getElementById(link.id) }))
-        .filter((item): item is { id: string; el: HTMLElement } => item.el !== null);
-
-      for (let i = sectionElements.length - 1; i >= 0; i--) {
-        const item = sectionElements[i];
-        if (item.el.offsetTop <= scrollMid) {
-          setCurrentSection(item.id);
-          return;
-        }
-      }
-      if (window.scrollY < 200) {
-        setCurrentSection('home');
-      }
+      setIsScrolled(window.scrollY > 25);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -63,25 +62,26 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
-            {/* Pure company logo mark only */}
+            {/* Pure company logo mark */}
             <a
               href="#home"
+              onClick={(e) => handleNavClick(e, 'home')}
               className="group flex items-center focus:outline-none"
               aria-label="VS+ Homepage"
             >
               <VSPlusLogo size="md" />
             </a>
 
-            {/* Desktop Navigation with Active Page Indicator */}
-            <nav className="hidden lg:flex items-center gap-2 p-1.5 rounded-full glass-panel border border-white/10 shadow-lg">
+            {/* Desktop Navigation with Active Page Pill Indicator */}
+            <nav className="hidden lg:flex items-center gap-1.5 p-1.5 rounded-full glass-panel border border-white/10 shadow-lg">
               {navLinks.map((link) => {
-                const isActive = currentSection === link.id;
+                const isActive = activePage === link.id;
                 return (
                   <a
                     key={link.id}
-                    href={link.href}
-                    onClick={() => setCurrentSection(link.id)}
-                    className={`text-xs uppercase tracking-wider transition-all duration-200 px-3.5 py-1.5 rounded-full flex items-center gap-1.5 ${
+                    href={`#${link.id}`}
+                    onClick={(e) => handleNavClick(e, link.id)}
+                    className={`text-xs uppercase tracking-wider transition-all duration-200 px-4 py-1.5 rounded-full flex items-center gap-1.5 cursor-pointer ${
                       isActive
                         ? 'bg-[#dfff24] text-black font-extrabold shadow-md'
                         : 'text-zinc-300 hover:text-white hover:bg-white/5 font-semibold'
@@ -96,13 +96,24 @@ export const Navbar: React.FC<NavbarProps> = ({
               })}
             </nav>
 
+            {/* Start a Project Quick Trigger (Desktop) */}
+            <div className="hidden lg:flex items-center gap-3">
+              <button
+                onClick={onOpenProjectInquiry}
+                type="button"
+                className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/10 hover:bg-[#dfff24] text-white hover:text-black border border-white/15 transition-all shadow-sm cursor-pointer"
+              >
+                Inquire Project
+              </button>
+            </div>
+
             {/* Mobile Menu Trigger */}
             <div className="flex items-center lg:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 type="button"
                 aria-label="Toggle menu"
-                className="px-3 py-1.5 text-xs font-bold tracking-widest text-zinc-300 hover:text-white border border-white/10 rounded-full bg-zinc-900/80"
+                className="px-3.5 py-1.5 text-xs font-bold tracking-widest text-zinc-300 hover:text-white border border-white/10 rounded-full bg-zinc-900/80"
               >
                 {isMobileMenuOpen ? 'CLOSE' : 'MENU'}
               </button>
@@ -115,27 +126,29 @@ export const Navbar: React.FC<NavbarProps> = ({
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-2xl lg:hidden flex flex-col pt-24 px-6 pb-8 justify-between animate-in fade-in duration-200">
           <div className="flex flex-col space-y-6">
-            <div className="text-xs tracking-wider text-zinc-400 pb-4 border-b border-zinc-800">
-              Colombo 04, Sri Lanka
+            <div className="text-xs tracking-wider text-zinc-400 pb-4 border-b border-zinc-800 flex items-center justify-between">
+              <span>Colombo 04, Sri Lanka</span>
+              <span className="text-[#dfff24] uppercase font-bold">Menu</span>
             </div>
 
-            <nav className="flex flex-col space-y-4">
+            <nav className="flex flex-col space-y-3">
               {navLinks.map((link) => {
-                const isActive = currentSection === link.id;
+                const isActive = activePage === link.id;
                 return (
                   <a
                     key={link.id}
-                    href={link.href}
-                    onClick={() => {
-                      setCurrentSection(link.id);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`text-2xl font-bold tracking-tight transition-colors flex items-center justify-between ${
+                    href={`#${link.id}`}
+                    onClick={(e) => handleNavClick(e, link.id)}
+                    className={`text-2xl font-bold tracking-tight transition-colors py-2 flex items-center justify-between border-b border-white/5 ${
                       isActive ? 'text-[#dfff24]' : 'text-zinc-200 hover:text-[#dfff24]'
                     }`}
                   >
                     <span>{link.label}</span>
-                    {isActive && <span className="text-xs uppercase bg-[#dfff24] text-black px-2 py-0.5 rounded-full font-bold">CURRENT</span>}
+                    {isActive && (
+                      <span className="text-[10px] uppercase bg-[#dfff24] text-black px-2 py-0.5 rounded-full font-bold">
+                        ACTIVE PAGE
+                      </span>
+                    )}
                   </a>
                 );
               })}

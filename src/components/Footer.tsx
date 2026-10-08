@@ -2,9 +2,26 @@ import React from 'react';
 import { STUDIO_INFO } from '../data/projectsData.ts';
 import { VSPlusLogo } from './VSPlusLogo.tsx';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (pageId: 'home' | 'work' | 'services' | 'about' | 'contact') => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, pageId: 'home' | 'work' | 'services' | 'about' | 'contact') => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(pageId);
+      const lenis = (window as any).__lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { duration: 0.8 });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
   };
 
   return (
@@ -33,37 +50,27 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-1.5 text-xs font-medium">
               <li>
-                <a href="#home" className="hover:text-[#dfff24] transition-colors">
+                <a href="#home" onClick={(e) => handleLinkClick(e, 'home')} className="hover:text-[#dfff24] transition-colors cursor-pointer">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#statement" className="hover:text-[#dfff24] transition-colors">
-                  Philosophy Statement
-                </a>
-              </li>
-              <li>
-                <a href="#work" className="hover:text-[#dfff24] transition-colors">
+                <a href="#work" onClick={(e) => handleLinkClick(e, 'work')} className="hover:text-[#dfff24] transition-colors cursor-pointer">
                   Projects &amp; Archive
                 </a>
               </li>
               <li>
-                <a href="#services" className="hover:text-[#dfff24] transition-colors">
+                <a href="#services" onClick={(e) => handleLinkClick(e, 'services')} className="hover:text-[#dfff24] transition-colors cursor-pointer">
                   Capabilities &amp; Services
                 </a>
               </li>
               <li>
-                <a href="#results" className="hover:text-[#dfff24] transition-colors">
-                  Verified Results
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="hover:text-[#dfff24] transition-colors">
+                <a href="#about" onClick={(e) => handleLinkClick(e, 'about')} className="hover:text-[#dfff24] transition-colors cursor-pointer">
                   About Studio
                 </a>
               </li>
               <li>
-                <a href="#contact" className="hover:text-[#dfff24] transition-colors">
+                <a href="#contact" onClick={(e) => handleLinkClick(e, 'contact')} className="hover:text-[#dfff24] transition-colors cursor-pointer">
                   Contact Studio
                 </a>
               </li>
