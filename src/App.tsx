@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
+import React, { useState, useEffect } from "react";
+import Lenis from "lenis";
 import { Navbar, NavPageId } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
 import { BrandStatementSequence } from './components/BrandStatementSequence.tsx';
